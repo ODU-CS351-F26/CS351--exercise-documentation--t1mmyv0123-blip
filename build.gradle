@@ -31,3 +31,41 @@ application { //Allows  ./gradlew run --args=path-to-test-data
     mainClass = 'edu.odu.cs.MostCommonWords'
 }
 
+// Copy the hand-written report index page into build/reports
+task copyHtmlToReports(type: Copy) {
+    from 'src/main/html'
+    into "$buildDir/reports"
+}
+
+// Copy the generated javadoc into build/reports/javadoc
+task copyDocsToReports(type: Copy) {
+    dependsOn javadoc
+    from "$buildDir/docs"
+    into "$buildDir/reports"
+}
+
+// Assemble build/reports/ so that it contains index.md, tests/, and javadoc/.
+// (The test HTML report is already written to build/reports/tests/test/ by
+// the standard "test" task, which "build" ensures has run.)
+task reports {
+    dependsOn build
+    dependsOn copyHtmlToReports
+    dependsOn copyDocsToReports
+}
+
+gitPublish {
+    repoUri = 'git@github.com:ODU-CS351-F26/CS351--exercise-documentation--t1mmyv0123-blip.git'
+    branch = 'gh-pages'
+    contents {
+        from "$buildDir/reports"
+    }
+    commitMessage = 'Publish reports'
+}
+
+// gitPublishCopy must not run until build/reports/ has been fully assembled,
+// or it will publish an empty/incomplete directory.
+gitPublishCopy.dependsOn reports
+
+task deployReports {
+    dependsOn gitPublishPush
+}
