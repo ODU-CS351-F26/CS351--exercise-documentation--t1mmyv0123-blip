@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html","k":"18"},{"p":"edu.odu.cs","l":"MostCommonWords"},{"p":"edu.odu.cs","l":"WordCount"},{"p":"edu.odu.cs","l":"WordCounter"},{"p":"edu.odu.cs","l":"WordFilter"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html","k":"18"},{"p":"edu","l":"bogusClass"},{"p":"edu.odu.cs","l":"MostCommonWords"},{"p":"edu.odu.cs","l":"WordCount"},{"p":"edu.odu.cs","l":"WordCounter"},{"p":"edu.odu.cs","l":"WordFilter"}];updateSearchResults();
